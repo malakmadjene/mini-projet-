@@ -1,4 +1,6 @@
 # 🟩 Wordle Solver en C
+![jeu](https://github.com/user-attachments/assets/d62c7512-83c5-4b44-bac6-88f734e6b6f8)
+
 
 ## 📌 Description du projet
 
@@ -44,7 +46,8 @@ Le jeu respecte les règles officielles de Wordle :
 
 ## ▶️ Compilation et exécution
 
-### 🔧 Compilation (Linux / macOS / WSL)
+### 🔧 Compilation 
+
 
 ```bash
 gcc main.c wordle.c -o wordle
@@ -108,32 +111,13 @@ Le solveur utilise une stratégie simple mais efficace :
 
 ---
 
-## 📊 Complexité (résumé)
 
-* **Temps** :
-
-  * Filtrage : `O(n × WORD_LEN²)` par tentative
-* **Mémoire** :
-
-  * Stockage de tableaux de mots : `O(n × WORD_LEN)`
-
----
-
-## 📚 Prérequis
-
-* Compilateur C (`gcc` recommandé)
-* Système compatible ANSI C
-* Fichier `words.txt` contenant des mots de 5 lettres
-
----
 
 ## 👨‍🎓 Auteur
 
-* **Nom** : *(à compléter)*
-* **Filière** : L2 Informatique / ISIL
-* **Module** : ALGO3 – Algorithmes & Structures de Données
-
----
+MADJENE malak 
+MAHDI Melina 
+KEDDAR Acyl 
 
 ## ✅ Remarques
 
@@ -145,6 +129,22 @@ Le solveur utilise une stratégie simple mais efficace :
   * statistiques de performance du solveur
 
 ---
+##   capture d ecran d execution   
+
+
+### mode joueur 
+<img width="890" height="907" alt="Capture d&#39;écran 2025-12-18 220520" src="https://github.com/user-attachments/assets/16226159-6637-4794-9cdf-1ce0a29be6be" />
+
+
+
+### mode solveur automatique 
+<img width="1012" height="666" alt="Capture d&#39;écran 2025-12-18 222340" src="https://github.com/user-attachments/assets/d5824c6d-2e78-4998-ad11-f8a9c5e9f746" />
+
+
+
+### mode solveur interactif 
+<img width="1104" height="523" alt="Capture d&#39;écran 2025-12-18 220910" src="https://github.com/user-attachments/assets/6812fcc5-229f-4e13-b12f-fee976d70be9" />
+
 
 🧠 *Projet Wordle Solver – Langage C*
 
