@@ -16,12 +16,11 @@ void to_upper(char *s)
         // Si le caractère est une lettre minuscule
         if (s[i] >= 'a' && s[i] <= 'z')
             // On la transforme en majuscule (différence ASCII = 32)
-            s[i] -= 32;
+            s[i] -= 32; //c est pour le ocde ascii 
     }
 }
 
-/* =====================================================
-   ==================  DICTIONNAIRE   /
+//   DICTIONNAIRE   //
 
 // Cette fonction charge les mots du fichier words.txt
 // words : tableau qui va contenir les mots
@@ -66,9 +65,7 @@ int is_valid_word(char words[MAX_WORDS][WORD_LEN + 1], int n, char *guess)
     return 0; // Mot invalide
 }
 
-/* =====================================================
-   ===================  FEEDBACK  ======================
-   ===================================================== */
+//FEEDBACK  //
 
 // Calcule le feedback Wordle entre le mot secret et la proposition
 // G = lettre correcte et bien placée
