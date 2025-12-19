@@ -33,8 +33,8 @@ int load_dictionary(char words[MAX_WORDS][WORD_LEN + 1])
     // Si le fichier n'existe pas ou ne s'ouvre pas
     if (!f)
     {
-        printf("Erreur ouverture dictionnaire\n");
-        exit(1); // Arrêt brutal du programme
+        printf("Erreur d'ouverture du dictionnaire\n");
+        exit(1); // Arrêt du programme
     }
 
     int count = 0; // Compteur de mots
@@ -236,12 +236,12 @@ void mode_solveur(char words[MAX_WORDS][WORD_LEN + 1], int total)
         strcpy(possible[i], words[i]);
 
     int count = total;
-
+     printf("\n===== WORDLE (Solveur Automatique) =====\n");
     for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++)
     {
         strcpy(guess, possible[0]); // Stratégie simple : premier mot
         compute_feedback(target, guess, feedback);
-
+        printf("Tentative %d : %s\n", attempt, guess);
         print_colored(guess, feedback);
 
         if (strcmp(feedback, "GGGGG") == 0)
@@ -256,6 +256,103 @@ void mode_solveur(char words[MAX_WORDS][WORD_LEN + 1], int total)
     }
 
     printf("Solveur a perdu. Mot etait : %s\n", target);
+}
+/* ===== MODE SOLVEUR INTERACTIF ===== */
+/*
+   Ce mode permet à l'ordinateur de jouer à Wordle.
+   L'ordinateur propose un mot, et l'utilisateur (humain)
+   lui donne le feedback sous forme de lettres :
+   G = lettre bien placée
+   Y = lettre mal placée
+   X = lettre absente
+*/
+void mode_solveur_interactif(char words[MAX_WORDS][WORD_LEN + 1], int total) {
+
+    // Tableau contenant les mots encore possibles
+    char possible[MAX_WORDS][WORD_LEN + 1];
+
+    // Tableau temporaire pour stocker les mots filtrés
+    char next[MAX_WORDS][WORD_LEN + 1];
+
+    // Mot proposé par le solveur
+    char guess[WORD_LEN + 1];
+
+    // Feedback donné par l'utilisateur (G/Y/X)
+    char feedback[WORD_LEN + 1];
+
+    /*
+       Initialisation :
+       Au début, tous les mots du dictionnaire sont considérés
+       comme possibles.
+    */
+    for (int i = 0; i < total; i++)
+        strcpy(possible[i], words[i]);
+
+    // Nombre actuel de mots possibles
+    int count = total;
+
+    printf("\n===== WORDLE (Solveur Interactif) =====\n");
+    printf("L'ordinateur propose un mot, vous entrez le feedback (G/Y/X)\n\n");
+
+    /*
+       Boucle principale du jeu :
+       Le solveur a un nombre maximum de tentatives (MAX_ATTEMPTS)
+    */
+    for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+
+        /*
+           S'il n'y a plus aucun mot possible,
+           cela signifie que le feedback donné est incohérent
+        */
+        if (count == 0) {
+            printf("Aucun mot possible restant ! Verifiez le feedback\n");
+            return;
+        }
+
+        /*
+           Choix du mot à proposer :
+           Ici, on prend simplement le premier mot
+           parmi les mots encore possibles.
+        */
+        strcpy(guess, possible[0]);
+        printf("Tentative %d : %s\n", attempt, guess);
+
+        /*
+           Saisie du feedback utilisateur.
+           On vérifie que la longueur est correcte (WORD_LEN)
+        */
+        do {
+            printf("Feedback (G/Y/X) : ");
+            scanf("%5s", feedback);
+            to_upper(feedback); // Conversion en majuscules
+        } while (strlen(feedback) != WORD_LEN);
+
+        /*
+           Si le feedback est GGGGG,
+           alors le mot secret a été trouvé
+        */
+        if (strcmp(feedback, "GGGGG") == 0) {
+            printf("Solveur a trouve le mot secret !\n");
+            return;
+        }
+
+        /*
+           Filtrage des mots :
+           On garde uniquement les mots compatibles
+           avec le feedback donné
+        */
+        count = filter_words(possible, count, guess, feedback, next);
+
+        /*
+           Mise à jour du tableau "possible"
+           avec les mots filtrés
+        */
+        for (int i = 0; i < count; i++)
+            strcpy(possible[i], next[i]);
+    }
+
+    // Si le solveur n'a pas trouvé le mot après toutes les tentatives
+    printf("Solveur n'a pas trouve le mot en %d tentatives.\n", MAX_ATTEMPTS);
 }
 
 /* =====================================================
