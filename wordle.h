@@ -1,9 +1,7 @@
 #ifndef WORDLE_H
 #define WORDLE_H
 
-/* =====================================================
-   ===============  FICHIER wordle.h  ==================
-   =====================================================
+/*  FICHIER wordle.h  
    Ce fichier est un fichier d'en-tête (.h).
    Il sert à :
    - définir des constantes globales
@@ -14,17 +12,13 @@
    partagent les mêmes définitions.
 */
 
-/* =====================================================
-   ============  PROTECTION CONTRE DOUBLE INCLUDE ======
-   =====================================================
+/*   PROTECTION CONTRE DOUBLE INCLUDE 
    Les lignes #ifndef / #define / #endif empêchent
    que ce fichier soit inclus plusieurs fois
    lors de la compilation, ce qui éviterait des erreurs.
 */
 
-/* =====================================================
-   =================  CONSTANTES  ======================
-   ===================================================== */
+/*Constante */
 
 // WORD_LEN : longueur d'un mot Wordle
 // Ici, les mots font exactement 5 lettres
@@ -38,9 +32,8 @@
 // Sert à dimensionner les tableaux de mots
 #define MAX_WORDS 1000
 
-/* =====================================================
-   ===========  PROTOTYPES DES FONCTIONS  ===============
-   =====================================================
+/* PROTOTYPES DES FONCTIONS 
+
    Les prototypes indiquent au compilateur :
    - le nom de la fonction
    - ses paramètres
@@ -49,14 +42,14 @@
    comment utiliser les fonctions définies dans les .c
 */
 
-/* ================== FONCTION UTILITAIRE ================== */
+/* FONCTION UTILITAIRE  */
 
 // to_upper : transforme une chaîne de caractères
 // passée en paramètre en MAJUSCULES
 // Exemple : "apple" devient "APPLE"
 void to_upper(char *s);
 
-/* ================== DICTIONNAIRE ================== */
+/*  DICTIONNAIRE*/
 
 // load_dictionary : charge les mots depuis le fichier words.txt
 // words : tableau qui va contenir les mots du dictionnaire
@@ -70,7 +63,7 @@ int load_dictionary(char words[MAX_WORDS][WORD_LEN + 1]);
 // Retour : 1 si le mot existe dans le dictionnaire, 0 sinon
 int is_valid_word(char words[MAX_WORDS][WORD_LEN + 1], int n, char *guess);
 
-/* ================== FEEDBACK WORDLE ================== */
+/*  FEEDBACK WORDLE */
 
 // compute_feedback : calcule le feedback Wordle
 // target   : mot secret à deviner
@@ -81,7 +74,7 @@ int is_valid_word(char words[MAX_WORDS][WORD_LEN + 1], int n, char *guess);
 // X : lettre absente du mot
 void compute_feedback(char *target, char *guess, char *feedback);
 
-/* ================== LOGIQUE DU SOLVEUR ================== */
+/*  LOGIQUE DU SOLVEUR  */
 
 // match_feedback : vérifie si un mot candidat est compatible
 // avec un feedback donné
@@ -106,7 +99,7 @@ int filter_words(
     char new_words[MAX_WORDS][WORD_LEN + 1]
 );
 
-/* ================== AFFICHAGE ================== */
+/* AFFICHAGE  */
 
 // print_colored : affiche un mot avec des couleurs
 // en fonction du feedback (vert, jaune, gris)
@@ -114,7 +107,7 @@ int filter_words(
 // feedback : feedback associé
 void print_colored(char *guess, char *feedback);
 
-/* ================== MODES DE JEU ================== */
+/*  MODES DE JEU  */
 
 // mode_joueur : mode où un humain joue au Wordle
 // words : dictionnaire
