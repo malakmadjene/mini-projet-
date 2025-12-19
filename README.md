@@ -34,10 +34,9 @@ Le jeu respecte les règles officielles de Wordle :
 
 ```
 /project
-│── main.c                 // Programme principal
+
 │── wordle.c               // Implémentation des fonctions du jeu
 │── wordle.h               // Prototypes et constantes
-│── solver.c (optionnel)   // Logique du solveur (si séparé)
 │── words.txt              // Dictionnaire de mots (5 lettres)
 │── README.md              // Documentation du projet
 ```
@@ -56,7 +55,7 @@ gcc main.c wordle.c -o wordle
 ### ▶️ Exécution
 
 ```bash
-./wordle
+./wordle.exe
 ```
 
 ---
@@ -115,7 +114,7 @@ Le solveur utilise une stratégie simple mais efficace :
 
 ## 👨‍🎓 Auteur
 
-MADJENE malak 
+MADJENE Malak 
 MAHDI Melina 
 KEDDAR Acyl 
 
